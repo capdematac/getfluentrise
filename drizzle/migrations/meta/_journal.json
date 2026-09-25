@@ -8,6 +8,13 @@
       "when": 1790337026834,
       "tag": "0000_fluentrise_core_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790337101263,
+      "tag": "0001_fluentrise_seed_content",
+      "breakpoints": true
     }
   ]
 }
