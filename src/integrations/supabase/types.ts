@@ -14,16 +14,397 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      attempts: {
+        Row: {
+          context: string
+          correct: boolean
+          created_at: string
+          exercise_id: string
+          id: string
+          level: Database["public"]["Enums"]["cefr_level"]
+          response: string | null
+          skill: Database["public"]["Enums"]["skill_area"]
+          user_id: string
+        }
+        Insert: {
+          context?: string
+          correct: boolean
+          created_at?: string
+          exercise_id: string
+          id?: string
+          level: Database["public"]["Enums"]["cefr_level"]
+          response?: string | null
+          skill: Database["public"]["Enums"]["skill_area"]
+          user_id: string
+        }
+        Update: {
+          context?: string
+          correct?: boolean
+          created_at?: string
+          exercise_id?: string
+          id?: string
+          level?: Database["public"]["Enums"]["cefr_level"]
+          response?: string | null
+          skill?: Database["public"]["Enums"]["skill_area"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attempts_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exercises: {
+        Row: {
+          answer: Json
+          created_at: string
+          created_by: string | null
+          est_seconds: number
+          examples: string[]
+          explanation: string | null
+          id: string
+          is_placement: boolean
+          lesson_id: string | null
+          level: Database["public"]["Enums"]["cefr_level"]
+          objective: string | null
+          options: Json
+          passage: string | null
+          position: number
+          prompt: string
+          skill: Database["public"]["Enums"]["skill_area"]
+          status: string
+          tags: string[]
+          title: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          answer: Json
+          created_at?: string
+          created_by?: string | null
+          est_seconds?: number
+          examples?: string[]
+          explanation?: string | null
+          id?: string
+          is_placement?: boolean
+          lesson_id?: string | null
+          level: Database["public"]["Enums"]["cefr_level"]
+          objective?: string | null
+          options?: Json
+          passage?: string | null
+          position?: number
+          prompt: string
+          skill: Database["public"]["Enums"]["skill_area"]
+          status?: string
+          tags?: string[]
+          title?: string | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          answer?: Json
+          created_at?: string
+          created_by?: string | null
+          est_seconds?: number
+          examples?: string[]
+          explanation?: string | null
+          id?: string
+          is_placement?: boolean
+          lesson_id?: string | null
+          level?: Database["public"]["Enums"]["cefr_level"]
+          objective?: string | null
+          options?: Json
+          passage?: string | null
+          position?: number
+          prompt?: string
+          skill?: Database["public"]["Enums"]["skill_area"]
+          status?: string
+          tags?: string[]
+          title?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercises_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lesson_progress: {
+        Row: {
+          accuracy: number | null
+          completed_at: string | null
+          id: string
+          lesson_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          accuracy?: number | null
+          completed_at?: string | null
+          id?: string
+          lesson_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          accuracy?: number | null
+          completed_at?: string | null
+          id?: string
+          lesson_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          created_at: string
+          est_minutes: number
+          id: string
+          module_id: string
+          position: number
+          published: boolean
+          summary: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          est_minutes?: number
+          id?: string
+          module_id: string
+          position?: number
+          published?: boolean
+          summary?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          est_minutes?: number
+          id?: string
+          module_id?: string
+          position?: number
+          published?: boolean
+          summary?: string | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      modules: {
+        Row: {
+          created_at: string
+          id: string
+          level: Database["public"]["Enums"]["cefr_level"]
+          objective: string | null
+          position: number
+          published: boolean
+          slug: string
+          subtitle: string | null
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          level: Database["public"]["Enums"]["cefr_level"]
+          objective?: string | null
+          position?: number
+          published?: boolean
+          slug: string
+          subtitle?: string | null
+          title: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          level?: Database["public"]["Enums"]["cefr_level"]
+          objective?: string | null
+          position?: number
+          published?: boolean
+          slug?: string
+          subtitle?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      placement_results: {
+        Row: {
+          confidence: number
+          created_at: string
+          id: string
+          overall: Database["public"]["Enums"]["cefr_level"]
+          per_skill: Json
+          strengths: string[]
+          user_id: string
+          weaknesses: string[]
+        }
+        Insert: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          overall: Database["public"]["Enums"]["cefr_level"]
+          per_skill?: Json
+          strengths?: string[]
+          user_id: string
+          weaknesses?: string[]
+        }
+        Update: {
+          confidence?: number
+          created_at?: string
+          id?: string
+          overall?: Database["public"]["Enums"]["cefr_level"]
+          per_skill?: Json
+          strengths?: string[]
+          user_id?: string
+          weaknesses?: string[]
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          daily_goal_minutes: number
+          display_name: string | null
+          estimated_level: Database["public"]["Enums"]["cefr_level"] | null
+          goal: string | null
+          id: string
+          onboarded: boolean
+          updated_at: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          daily_goal_minutes?: number
+          display_name?: string | null
+          estimated_level?: Database["public"]["Enums"]["cefr_level"] | null
+          goal?: string | null
+          id: string
+          onboarded?: boolean
+          updated_at?: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          daily_goal_minutes?: number
+          display_name?: string | null
+          estimated_level?: Database["public"]["Enums"]["cefr_level"] | null
+          goal?: string | null
+          id?: string
+          onboarded?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      review_items: {
+        Row: {
+          created_at: string
+          due_at: string
+          exercise_id: string
+          id: string
+          interval_days: number
+          lapses: number
+          reps: number
+          source: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          due_at?: string
+          exercise_id: string
+          id?: string
+          interval_days?: number
+          lapses?: number
+          reps?: number
+          source?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          due_at?: string
+          exercise_id?: string
+          id?: string
+          interval_days?: number
+          lapses?: number
+          reps?: number
+          source?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "review_items_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "learner"
+      cefr_level: "A1" | "A2" | "B1" | "B2" | "C1" | "C2"
+      skill_area:
+        | "grammar"
+        | "vocabulary"
+        | "reading"
+        | "listening"
+        | "writing"
+        | "speaking"
+        | "use_of_english"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +531,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "learner"],
+      cefr_level: ["A1", "A2", "B1", "B2", "C1", "C2"],
+      skill_area: [
+        "grammar",
+        "vocabulary",
+        "reading",
+        "listening",
+        "writing",
+        "speaking",
+        "use_of_english",
+      ],
+    },
   },
 } as const
