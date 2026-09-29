@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_authenticated/notebook")({
       { property: "og:description", content: "Recurring error categories grouped by skill area." },
     ],
   }),
-  component: Notebook;
+  component: Notebook,
 });
 
 type Row = {
