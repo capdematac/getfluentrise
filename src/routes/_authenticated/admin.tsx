@@ -97,9 +97,9 @@ function Admin() {
       toast.error("Add a prompt before saving");
       return;
     }
-    let answer: unknown;
+    let answer: Exercise["answer"];
     try {
-      answer = JSON.parse(draft.answer || "{}");
+      answer = JSON.parse(draft.answer || "{}") as Exercise["answer"];
     } catch {
       toast.error('Answer must be JSON, e.g. {"correct":"had been"} or {"accepted":["had been"]}');
       return;
