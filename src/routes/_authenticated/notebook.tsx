@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useCurrentUser } from "@/hooks/useAuth";
 import { AppShell, LevelChip, SectionLabel } from "@/components/AppShell";
 import {
-  accuracy,
   correctAnswerText,
   SKILL_LABEL,
   TYPE_LABEL,
