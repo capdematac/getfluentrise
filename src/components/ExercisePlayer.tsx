@@ -16,10 +16,10 @@ type Props = {
   total: number;
   onAnswered: (correct: boolean, response: string) => void;
   onNext: () => void;
-  onSave?: () => void;
-  saved?: boolean;
-  nextLabel?: string;
-  hideFeedback?: boolean;
+  onSave?: (() => void) | undefined;
+  saved?: boolean | undefined;
+  nextLabel?: string | undefined;
+  hideFeedback?: boolean | undefined;
 };
 
 type MatchPair = { left: string; right: string };
