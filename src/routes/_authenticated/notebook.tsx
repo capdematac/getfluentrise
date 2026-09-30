@@ -111,9 +111,7 @@ function Notebook() {
 
         {(rows ?? []).length > 0 ? (
           <p className="mt-6 text-[12px] text-ink-faint">
-            Overall accuracy on these skills improves as reviewed items stop reappearing — currently{" "}
-            {accuracy(0, 0)}% of notebook entries have been cleared automatically; clear them by
-            answering correctly in the review queue.
+            Entries stop reappearing in your review queue once you answer them correctly on schedule.
           </p>
         ) : null}
       </section>
