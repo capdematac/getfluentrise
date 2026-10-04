@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
+
 
 export const Route = createFileRoute("/auth")({
   ssr: false,
@@ -78,29 +78,7 @@ function AuthPage() {
     }
   }
 
-  async function handleGoogle() {
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) {
-      toast.error("Google sign-in failed. Try email instead.");
-      return;
-    }
-    if (result.redirected) return;
-    navigate({ to: "/dashboard" });
-  }
 
-  async function handleApple() {
-    const result = await lovable.auth.signInWithOAuth("apple", {
-      redirect_uri: window.location.origin,
-    });
-    if (result.error) {
-      toast.error("Apple sign-in failed. Try email instead.");
-      return;
-    }
-    if (result.redirected) return;
-    navigate({ to: "/dashboard" });
-  }
 
   return (
     <div className="flex min-h-screen flex-col bg-paper text-ink">
@@ -165,21 +143,7 @@ function AuthPage() {
               </button>
             </form>
 
-            <button
-              type="button"
-              onClick={handleGoogle}
-              className="mt-3 w-full rounded-full py-2.5 text-[14px] font-medium text-ink ring-1 ring-ink/10"
-            >
-              Continue with Google
-            </button>
 
-            <button
-              type="button"
-              onClick={handleApple}
-              className="mt-2 w-full rounded-full py-2.5 text-[14px] font-medium text-ink ring-1 ring-ink/10"
-            >
-              Continue with Apple
-            </button>
 
             <button
               type="button"
