@@ -9,4 +9,7 @@ export default defineConfig({
       enabled: true,
     },
   },
+  vite: {
+    base: "/getfluentrise/",
+  },
 });
