@@ -4,11 +4,13 @@ import {
   exerciseOptions,
   gradeResponse,
   isChoiceType,
+  isListeningType,
   SKILL_LABEL,
   TYPE_LABEL,
   type Exercise,
 } from "@/lib/cefr";
 import { LevelChip } from "@/components/AppShell";
+import { ListenButton } from "@/components/ListenButton";
 
 type Props = {
   exercise: Exercise;
@@ -104,7 +106,9 @@ export function ExercisePlayer({
           {TYPE_LABEL[exercise.type] ?? exercise.type} · {SKILL_LABEL[exercise.skill]}
         </p>
 
-        {exercise.passage ? (
+        {exercise.passage && isListeningType(exercise.type) ? (
+          <ListenButton script={exercise.passage} />
+        ) : exercise.passage ? (
           <p className="mt-3 border-l-2 border-line pl-4 font-serif text-[16px] leading-relaxed text-ink-soft">
             {exercise.passage}
           </p>
@@ -248,6 +252,12 @@ export function ExercisePlayer({
           {!result.correct ? (
             <p className="mt-3 text-[13px] text-ink-soft">
               Expected: <span className="font-medium text-ink">{correctAnswerText(exercise)}</span>
+            </p>
+          ) : null}
+
+          {exercise.passage && isListeningType(exercise.type) ? (
+            <p className="mt-3 border-l-2 border-line pl-4 font-serif text-[14px] text-ink-soft">
+              Transcript: {exercise.passage}
             </p>
           ) : null}
 

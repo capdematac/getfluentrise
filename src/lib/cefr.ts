@@ -35,6 +35,8 @@ export const TYPE_LABEL: Record<string, string> = {
   error_correction: "Error correction",
   matching: "Matching",
   ordering: "Sentence ordering",
+  listening_mcq: "Listening",
+  dictation: "Dictation",
 };
 
 export const GOALS = [
@@ -51,7 +53,11 @@ export function levelIndex(level: CefrLevel): number {
 }
 
 export function isChoiceType(type: string): boolean {
-  return type === "multiple_choice" || type === "reading_mcq" || type === "register_choice";
+  return type === "multiple_choice" || type === "reading_mcq" || type === "register_choice" || type === "listening_mcq";
+}
+
+export function isListeningType(type: string): boolean {
+  return type === "listening_mcq" || type === "dictation";
 }
 
 function normalise(value: string): string {
