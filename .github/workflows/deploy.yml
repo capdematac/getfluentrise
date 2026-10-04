@@ -29,6 +29,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Check build output
+        run: |
+          echo "=== OUTPUT ==="
+          find . -maxdepth 4 -type f | grep -E 'index.html|\.html$' | head -50
+          echo "=== DIRECTORIES ==="
+          find . -maxdepth 3 -type d | grep -E 'output|dist|build'
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -36,6 +43,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .output/public
+
   deploy:
     environment:
       name: github-pages
