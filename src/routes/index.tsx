@@ -57,7 +57,7 @@ function Landing() {
         <section className="anim-fade pt-10 sm:pt-16">
           <p className="label-mono">B2 → C1 → C2</p>
           <h1 className="mt-3 max-w-2xl font-serif text-[40px] leading-[1.05] tracking-tight sm:text-[58px]">
-            English for adults who are already good at it.
+            English for people who are already good at it.
           </h1>
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft">
             FluentRise is built for the last stretch — the part where progress stops coming from
