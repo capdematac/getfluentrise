@@ -31,10 +31,10 @@ jobs:
 
       - name: Check build output
         run: |
-          echo "=== OUTPUT ==="
-          find . -maxdepth 4 -type f | grep -E 'index.html|\.html$' | head -50
-          echo "=== DIRECTORIES ==="
-          find . -maxdepth 3 -type d | grep -E 'output|dist|build'
+          echo "=== PUBLIC FILES ==="
+          find .output/public -maxdepth 3 -type f | head -100
+          echo "=== PUBLIC ROOT ==="
+          ls -la .output/public
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
