@@ -175,6 +175,14 @@ function AuthPage() {
 
             <button
               type="button"
+              onClick={handleApple}
+              className="mt-2 w-full rounded-full py-2.5 text-[14px] font-medium text-ink ring-1 ring-ink/10"
+            >
+              Continue with Apple
+            </button>
+
+            <button
+              type="button"
               onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
               className="mt-4 w-full font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint hover:text-accent"
             >
