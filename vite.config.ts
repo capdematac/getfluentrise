@@ -5,10 +5,8 @@ export default defineConfig({
     server: {
       entry: "server",
     },
-  },
-  vite: {
-    build: {
-      ssr: false,
+    spa: {
+      enabled: true,
     },
   },
 });
