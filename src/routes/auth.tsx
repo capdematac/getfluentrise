@@ -90,6 +90,18 @@ function AuthPage() {
     navigate({ to: "/dashboard" });
   }
 
+  async function handleApple() {
+    const result = await lovable.auth.signInWithOAuth("apple", {
+      redirect_uri: window.location.origin,
+    });
+    if (result.error) {
+      toast.error("Apple sign-in failed. Try email instead.");
+      return;
+    }
+    if (result.redirected) return;
+    navigate({ to: "/dashboard" });
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-paper text-ink">
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5">
